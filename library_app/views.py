@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 
-def show_phones(request):
-    return render(request, 'template.html')
+def show_site(request):
+    return render(request, 'movie_list.html')

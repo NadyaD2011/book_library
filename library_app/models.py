@@ -1,3 +1,42 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
+
+class Genre(models.Model):
+    name = models.CharField(max_length=200, verbose_name="Название")
+
+    class Meta:
+        verbose_name = 'жанр'
+        verbose_name_plural = 'жанры'
+
+    def __str__(self):
+        return self.name
+
+
+class Movie(models.Model):
+    title = models.CharField(max_length=200, verbose_name="Название")
+    director = models.CharField(max_length=100, verbose_name="Режиссёр")
+    release_year = models.IntegerField(verbose_name="Год выпуска")
+    genre = models.ForeignKey(
+        Genre,
+        verbose_name='жанр',
+        related_name='movie',
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+    rating = models.FloatField(
+        default=0,
+        choices=[(i / 2, str(i / 2)) for i in range(0, 11)],
+        verbose_name="Рейтинг (0–5)"
+    )
+    poster = models.ImageField(blank=True, null=True, verbose_name="Обложка")
+    description = models.TextField(blank=True, verbose_name="Описание")
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Добавил")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'фильм'
+        verbose_name_plural = 'фильмы'
+
+    def __str__(self):
+        return f"{self.title} ({self.release_year})"
