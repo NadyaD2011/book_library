@@ -13,9 +13,26 @@ class Genre(models.Model):
         return self.name
 
 
+class Director(models.Model):
+    name = models.CharField(max_length=200, verbose_name="ФИО")
+
+    class Meta:
+        verbose_name = 'режисер'
+        verbose_name_plural = 'режисеры'
+
+    def __str__(self):
+        return self.name
+
+
 class Movie(models.Model):
     title = models.CharField(max_length=200, verbose_name="Название")
-    director = models.CharField(max_length=100, verbose_name="Режиссёр")
+    director = models.ForeignKey(
+        Director,
+        verbose_name='режисер',
+        related_name='movie',
+        null=True,
+        on_delete=models.SET_NULL,
+    )
     release_year = models.IntegerField(verbose_name="Год выпуска")
     genre = models.ForeignKey(
         Genre,

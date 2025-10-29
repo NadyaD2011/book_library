@@ -1,17 +1,19 @@
 from django.contrib import admin  
-from .models import Movie, Genre
 from django.shortcuts import reverse
 from django.utils.html import format_html
 from django.templatetags.static import static
 
+from .models import Genre
+from .models import Movie
+from .models import Director
+
 
 class MovisAdmin(admin.ModelAdmin):
-    list_display = ('title', 'genre', 'rating')
+    list_display = ('title', 'director', 'genre', 'rating')
     list_filter = ('release_year', 'genre', 'rating')
     search_fields = [
         'title',
         'director',
-        'genre'
     ]
     readonly_fields = [
         'get_image_preview',
@@ -31,5 +33,12 @@ class GenreAdmin(admin.ModelAdmin):
     ]
 
 
+class DirectorAdmin(admin.ModelAdmin):
+    search_fields = [
+        'name',
+    ]
+
+
 admin.site.register(Movie, MovisAdmin)
 admin.site.register(Genre, GenreAdmin)
+admin.site.register(Director, DirectorAdmin)
