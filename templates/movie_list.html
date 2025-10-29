@@ -10,18 +10,20 @@
 
 <section class="movies-grid">
     {% for movie in movies %}
-        <div class="movie-card">
-            <img src="{{ movie.poster.url }}" alt="{{ movie.title }}">
-            <div class="movie-info">
-            <h3>{{ movie.title }}</h3>
-            <p class="meta">{{ movie.director }} • {{ movie.release_year }}</p>
-            <p class="genre">{{ movie.genre }}</p>
-            <div class="rating">★ {{ movie.rating }}</div>
-            </div>
-        </div>
-    {% empty %}
-        <p>Нет фильмов в коллекции.</p>
-    {% endfor %}
+            <a href="{% url 'movie_detail' movie.pk %}" class="movie-card-link">
+                <div class="movie-card">
+                    <img src="{{ movie.poster.url }}" alt="{{ movie.title }}">
+                    <div class="movie-info">
+                        <h3>{{ movie.title }}</h3>
+                        <p class="meta">{{ movie.director }} • {{ movie.release_year }}</p>
+                        <p class="genre">{{ movie.genre }}</p>
+                        <div class="rating">★ {{ movie.rating }}</div>
+                    </div>
+                </div>
+            </a>
+        {% empty %}
+            <p>Нет фильмов в коллекции.</p>
+        {% endfor %}
     
     <div class="movie-card">
         <img src="https://via.placeholder.com/300x450/111/ff0000?text=Постер" alt="Крёстный отец">
@@ -53,6 +55,5 @@
         </div>
     </div>
 
-    <!-- Конец примеров -->
 </section>
 {% endblock %}

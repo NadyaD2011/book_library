@@ -1,4 +1,10 @@
 /* Netflix-style тема: тёмная + красный акцент */
+.movie-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 :root {
     --bg-dark: #141414;
     --card-bg: #1f1f1f;
