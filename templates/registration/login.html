@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Вход</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label>Имя пользователя:</label>
+            <input type="text" name="username" required>
+        </p>
+        <p>
+            <label>Пароль:</label>
+            <input type="password" name="password" required>
+        </p>
+        <button type="submit">Войти</button>
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: red;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'register' %}">Нет аккаунта? Зарегистрироваться</a>
+</body>
+</html>

@@ -48,7 +48,6 @@ class Movie(models.Model):
     )
     poster = models.ImageField(blank=True, null=True, verbose_name="Обложка")
     description = models.TextField(blank=True, verbose_name="Описание")
-    added_by = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Добавил")
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
