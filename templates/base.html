@@ -1,22 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="ru">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Моя коллекция фильмов{% endblock %}</title>
-        <link rel="stylesheet" href="static/css/movie_list.css">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href='/static/css/base.css'>
+        <link rel="stylesheet" href='{% block link %}{% endblock %}'>
     </head>
     <body>
         <header>
-            <div class="logo">MyMovies</div>
+            <a class="logo" href="/">MyMovies</a>
+            <!-- {% for genre in genres %}
+                <a href="/" class="genre">
+                    <h2>{{ genre.name }}</h2>
+                </a>
+            {% endfor %} -->
+
+            <div class="null"></div>
             <nav>
                 {% if user.is_authenticated %}
-                    <span class="user-info">Привет, {{ user.username }}!</span>
                     <a href="{% url 'add_movie' %}" class="btn-add">+ Добавить фильм</a>
                     <a href="{% url 'logout' %}" class="btn-logout">Выйти</a>
                 {% else %}
-                    <span class="user-info">Привет, гость!</span>
                     <a href="{% url 'login' %}" class="btn-logout">Войти</a>
                 {% endif %}
             </nav>
@@ -30,6 +35,6 @@
             <p>&copy; 2025 MyMovies. Все права защищены.</p>
         </footer>
 
-        <script src="static/js/template.js"></script>
+        <script src="{% block js %}{% endblock %}"></script>
     </body>
 </html>

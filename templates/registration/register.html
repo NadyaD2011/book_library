@@ -1,17 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Регистрация</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Зарегистрироваться</button>
-    </form>
-    <a href="{% url 'login' %}">Уже есть аккаунт? Войти</a>
-</body>
-</html>
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block link %}{% static 'css/register.css' %}{% endblock %}
+
+{% block content %}
+
+    <div class="login-container">
+        <h1 class="hero">Регистрация</h1>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Имя пользователя -->
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+                {{ form.username }}
+                {{ form.username.errors }}
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">Email</label>
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+
+            <!-- Пароль -->
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">Пароль</label>
+                {{ form.password1 }}
+                {{ form.password1.errors }}
+            </div>
+
+            <!-- Подтверждение пароля -->
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">Подтвердите пароль</label>
+                {{ form.password2 }}
+                {{ form.password2.errors }}
+            </div>
+
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+
+        <a href="{% url 'login' %}">Уже есть аккаунт? Войти</a>
+    </div>
+{% endblock %}

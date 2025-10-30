@@ -2,6 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+def rating_choices():
+    choices = []
+    for i in range(0, 11):
+        value = i / 2
+        label = str(int(value)) if value.is_integer() else str(value)
+        choices.append((value, label))
+    return choices
+
+
 class Genre(models.Model):
     name = models.CharField(max_length=200, verbose_name="Название")
 
@@ -33,7 +42,9 @@ class Movie(models.Model):
         null=True,
         on_delete=models.SET_NULL,
     )
-    release_year = models.IntegerField(verbose_name="Год выпуска")
+    release_year = models.IntegerField(
+        verbose_name="Год выпуска",
+    )
     genre = models.ForeignKey(
         Genre,
         verbose_name='жанр',
@@ -42,9 +53,9 @@ class Movie(models.Model):
         on_delete=models.SET_NULL,
     )
     rating = models.FloatField(
-        default=0,
-        choices=[(i / 2, str(i / 2)) for i in range(0, 11)],
-        verbose_name="Рейтинг (0–5)"
+        default=0.0,
+        choices=rating_choices(),
+        verbose_name="Рейтинг",
     )
     poster = models.ImageField(blank=True, null=True, verbose_name="Обложка")
     description = models.TextField(blank=True, verbose_name="Описание")

@@ -2,6 +2,8 @@
 
 {% block title %}Моя коллекция фильмов{% endblock %}
 
+{% block link %}static/css/movie_list.css{% endblock %}
+
 {% block content %}
 <div class="hero">
     <h1>Мои любимые фильмы</h1>
@@ -10,20 +12,20 @@
 
 <section class="movies-grid">
     {% for movie in movies %}
-            <a href="{% url 'movie_detail' movie.pk %}" class="movie-card-link">
-                <div class="movie-card">
-                    <img src="{{ movie.poster.url }}" alt="{{ movie.title }}">
-                    <div class="movie-info">
-                        <h3>{{ movie.title }}</h3>
-                        <p class="meta">{{ movie.director }} • {{ movie.release_year }}</p>
-                        <p class="genre">{{ movie.genre }}</p>
-                        <div class="rating">★ {{ movie.rating }}</div>
-                    </div>
+        <a href="{% url 'movie_detail' movie.pk %}" class="movie-card-link">
+            <div class="movie-card">
+                <img src="{{ movie.poster.url }}" alt="{{ movie.title }}">
+                <div class="movie-info">
+                    <h3>{{ movie.title }}</h3>
+                    <p class="meta">{{ movie.director }} • {{ movie.release_year }}</p>
+                    <p class="genre">{{ movie.genre }}</p>
+                    <div class="rating">★ {{ movie.rating }}</div>
                 </div>
-            </a>
-        {% empty %}
-            <p>Нет фильмов в коллекции.</p>
-        {% endfor %}
+            </div>
+        </a>
+    {% empty %}
+        <p>Нет фильмов в коллекции.</p>
+    {% endfor %}
 
 </section>
 {% endblock %}

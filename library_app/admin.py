@@ -9,7 +9,7 @@ from .models import Director
 
 
 class MovisAdmin(admin.ModelAdmin):
-    list_display = ('title', 'director', 'genre', 'rating')
+    list_display = ('title', 'director', 'genre', 'rating', 'created_at')
     list_filter = ('release_year', 'genre', 'rating')
     search_fields = [
         'title',

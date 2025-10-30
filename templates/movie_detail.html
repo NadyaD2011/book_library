@@ -1,25 +1,22 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>{{ movie.title }} — Детали</title>
-        <link rel="stylesheet" href="{% static 'css/movie_detail.css' %}">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
 
-        <div class="hero">
-            <a href="/" class="back-link">← Назад к списку</a>
-            <img src="{{ movie.poster.url }}" alt="{{ movie.title }}" class="poster-large">
-            <div class="details">
-                <h1>{{ movie.title }}</h1>
-                <div class="meta">{{ movie.director }} • {{ movie.release_year }} • {{ movie.genre }}</div>
-                <div class="rating">★ {{ movie.rating }}</div>
-                {% if movie.description %}
-                    <div class="description">{{ movie.description }}</div>
-                {% endif %}
-            </div>
+        <link rel="stylesheet" href="{% static 'css/movie_detail.css' %}">
+        
+{% block title %}{{ movie.title }} — Детали{% endblock %}
+
+{% block link %}{% static 'css/movie_detail.css' %}{% endblock %}
+
+{% block content %}
+    <div class="hero">
+        <img src="{{ movie.poster.url }}" alt="{{ movie.title }}" class="poster-large">
+        <div class="details">
+            <h1>{{ movie.title }}</h1>
+            <div class="meta">{{ movie.director }} • {{ movie.release_year }} • {{ movie.genre }}</div>
+            <div class="rating">★ {{ movie.rating }}</div>
+            {% if movie.description %}
+                <div class="description">{{ movie.description }}</div>
+            {% endif %}
         </div>
-    </body>
-</html>
+    </div>
+{% endblock %}

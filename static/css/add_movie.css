@@ -1,0 +1,179 @@
+main{
+    margin: 2vh 1vw;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+form p{
+    display: flex;
+    flex-direction: column;
+}
+.hero{
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+a.back {
+    text-decoration: none;
+    color: var(--text-light);
+}
+
+/* Общая форма */
+.form-container {
+    background-color: var(--bg-dark);
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 2rem auto;
+    box-shadow: var(--shadow);
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Группа полей */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+/* Метки (label) */
+.form-group label {
+    display: block;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.form-group label:hover {
+    color: var(--accent-red);
+}
+
+/* Поля ввода: input, select, textarea */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    color: var(--text-light);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+/* Фокус на поле */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-red);
+    box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.2);
+}
+
+/* Активное состояние (при нажатии) */
+.form-group input:active,
+.form-group select:active,
+.form-group textarea:active {
+    transform: translateY(1px);
+}
+
+/* Для select — сброс стилей и кастомная стрелка */
+.form-group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 2rem; /* место под стрелку */
+    position: relative;
+}
+
+/* Для file input — скрываем и стилизуем label */
+.form-group input[type="file"] {
+    display: none;
+}
+
+.file-status {
+    margin-left: 1rem;
+    color: var(--text-gray);
+}
+
+.form-group .file-label {
+    display: inline-block;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.form-group .file-label:hover {
+    background-color: #2a2a2a;
+}
+
+/* Ошибки валидации */
+ul.errorlist {
+    color: #ff5252;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    padding-left: 1.2rem;
+    list-style-type: disc;
+}
+
+/* Кнопка отправки */
+.form-submit {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--accent-red);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.form-submit:hover {
+    background-color: var(--hover-red);
+    transform: scale(1.02);
+}
+
+.form-submit:active {
+    transform: scale(0.98);
+}
+
+textarea{
+    resize: vertical;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.6rem;
+        font-size: 0.95rem;
+    }
+
+    .form-submit {
+        padding: 0.7rem;
+        font-size: 0.95rem;
+    }
+}

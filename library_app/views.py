@@ -7,6 +7,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from .forms import CustomUserCreationForm
 from .forms import MovieForm
+from .models import Genre
 
 
 def register_view(request):
@@ -42,19 +43,20 @@ def logout_view(request):
 
 def movie_detail(request, pk):
     movie = get_object_or_404(Movie, pk=pk)
-    return render(request, 'movie_detail.html', {'movie': movie})
+    genres = Genre.objects.all()
+    return render(request, 'movie_detail.html', {'movie': movie, 'genres': genres})
 
 
 def show_site(request):
     movies = Movie.objects.all()
-    user = User.objects.all()[0]
+    genres = Genre.objects.all()
 
     return render(
         request,
         'movie_list.html',
         {
             'movies': movies,
-            'users': user
+            'genres': genres
         }
     )
 

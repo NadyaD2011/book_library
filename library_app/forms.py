@@ -11,7 +11,6 @@ class MovieForm(forms.ModelForm):
         widgets = {
             'description': forms.Textarea(attrs={'rows': 4}),
             'release_year': forms.NumberInput(attrs={'min': 1890, 'max': 2030}),
-            'rating': forms.NumberInput(attrs={'step': 0.5, 'min': 0, 'max': 5}),
         }
 
 

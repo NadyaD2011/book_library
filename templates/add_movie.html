@@ -1,23 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% extends 'base.html' %}
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block title %}Добавить фильм{% endblock %}
 
-    {% block content %}
-    <h2>Добавить фильм</h2>
+{% block link %}{% static 'css/add_movie.css' %}{% endblock %}
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Добавить фильм</button>
-    </form>
 
-    <a href="{% url 'movie_list' %}">← Назад к списку</a>
-    {% endblock %}
-</body>
-</html>
+{% block content %}
+
+    <div class="form">
+        <h1 class="hero">Добавить фильм</h1>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {% if field.field.widget.input_type == 'file' %}
+                        <label class="file-label" for="{{ field.id_for_label }}">
+                            Выберите файл
+                        </label>
+                        <span id="file-status" class="file-status">Файл не выбран</span>
+                        {{ field }}
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                    {{ field.errors }}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="form-submit">Добавить фильм</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block js %}{% static 'js/add_movie.js' %}{% endblock %}
